@@ -1,7 +1,8 @@
 var firstName = "Patrick";
-var middleName = 1;
-function greeting(name) {
-    console.log("ola", name);
+var years = 41;
+function greeting(name, years) {
+    console.log(name, years);
 }
-greeting(firstName);
-greeting(middleName);
+greeting("Name " + firstName + " Years ", years);
+var x = 10;
+console.log("x= ", x);

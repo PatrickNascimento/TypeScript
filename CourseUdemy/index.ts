@@ -1,8 +1,11 @@
 const firstName = "Patrick";
-const middleName = 1;
+const years = 41;
 
-function greeting(name: string, middleName: number) {
-  console.log("ola", name);
+function greeting(name: string, years: number) {
+  console.log(name,years);
 }
 
-greeting(firstName, middleName);
+greeting("Name " + firstName + " Years ", years);
+
+let x: number = 10;
+console.log("x= ", x);
