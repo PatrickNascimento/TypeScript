@@ -18,3 +18,8 @@ function passCoordinates(coord) {
 }
 const objCoord = { x: 16.86, y: 85.99 };
 passCoordinates(objCoord);
+function getName(fullname) {
+    console.log(fullname.nome + " ", fullname.sobrenome);
+}
+const objNames = { nome: "PAtrick", sobrenome: "Nascimento" };
+getName(objNames);

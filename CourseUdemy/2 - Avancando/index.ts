@@ -25,4 +25,12 @@ function passCoordinates(coord: {x:number, y:number}) {
 const objCoord = {x: 16.86, y: 85.99}
 passCoordinates(objCoord)
 
+function getName(fullname: {nome: string, sobrenome:string}){
+  console.log(fullname.nome+" ",fullname.sobrenome);
+}
+
+const objNames = {nome: "PAtrick", sobrenome: "Nascimento"}
+
+getName(objNames);
+
 
