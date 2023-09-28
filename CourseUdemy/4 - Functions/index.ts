@@ -22,7 +22,7 @@ function operations(
 ): number {
   switch (operation) {
     case "sum":
-      return arr.reduce((acc, curr) => acc + curr, 0); // Begin End => Begin operator ex: +*/ end
+      return arr.reduce((acc, curr) => acc + curr, 0);
     case "average":
       const sum = arr.reduce((acc, curr) => acc + curr, 0);
       return sum / arr.length;
@@ -76,36 +76,11 @@ function userGreeting(user: object) {
   }
 }
 
-userGreeting(jhon);
-userGreeting(Paul);
+userGreeting(jhon)
+userGreeting(Paul)
 
-//operator in
 
-class Dog {
-  name;
-  breed;
-  constructor(name: string, breed?: string) {
-    this.name = name;
-    if (breed) {
-      this.breed = breed;
-    }
-  }
-}
-
-const turca = new Dog("turca")
-const bob = new Dog("Bob","Pastor Alemao")
-
-function showGodDetails(dog: Dog) {
-
-  if('breed' in dog) {
-    console.log(`O Dog é raça ${dog.breed}`);
-  } else{
-    console.log(`O Dog é raça SRD`)
-  }
-}
-
-showGodDetails(turca)
-showGodDetails(bob)
+// Operador in
 
 
 
