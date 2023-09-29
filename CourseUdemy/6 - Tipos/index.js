@@ -37,3 +37,12 @@ console.log(showChar(myChar, 'name'));
 const userName = "matheus";
 const userName2 = "Patrick";
 console.log(userName2, "Nascimento");
+const newtruck = {
+    km: 10000,
+    kg: 5000,
+    description: "Caminhao curto"
+};
+function showkm(km) {
+    console.log('o veiculo esta com ', km, ' km');
+}
+showkm(newtruck.km);
