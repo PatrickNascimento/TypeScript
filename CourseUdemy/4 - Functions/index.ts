@@ -1,86 +1,125 @@
-// 1 - typeguard
+//funcão sem retorno.
 
-function soma(a: number | string, b: number | string): void {
-  if (typeof a === "string" && typeof b === "string") {
-    console.log(parseFloat(a) + parseFloat(b));
-  } else if (typeof a === "number" && typeof b === "number") {
-    console.log(a + b);
+function withouReturn(): void {
+  console.log("esta funcao não tem return");
+}
+
+withouReturn();
+
+//Callback
+
+function greeting(name: string): string {
+  return `olá ${name}`;
+}
+
+function preGreeting(f: (name: string) => string, userName: string) {
+  console.log("preparando a função com Callback");
+
+  const greet = f(userName);
+  console.log(greet);
+}
+
+preGreeting(greeting, "Matheus");
+preGreeting(greeting, "joao");
+
+//Generic funcion
+
+function firstElement<T>(arr: T[]): T {
+  return arr[0];
+}
+
+console.log(firstElement([1, 2, 3]));
+console.log(firstElement(["a", "b", "c"]));
+
+//merge Objects
+
+function mergeObjects<U, T>(obj1: U, obj2: T) {
+  return {
+    ...obj1,
+    ...obj2,
+  };
+}
+
+const newObject = mergeObjects(
+  { name: "matheus" },
+  { age: 30, job: "programer" }
+);
+console.log(newObject);
+
+//Constraints nas Generic Functions
+
+function biggestNumber<T extends number | string>(a: T, b: T): T {
+  let biggest: T;
+
+  if (+a > +b) {
+    biggest = a;
   } else {
-    console.log("Pelo menos um dos valores não é um número válido.");
+    biggest = b;
+  }
+  return biggest;
+}
+
+console.log(biggestNumber(5, 8));
+console.log(biggestNumber("12", "8"));
+
+// especificar tipo de argumento
+
+function mergeArray<T>(arr1: T[], arr2: T[]) {
+  return arr1.concat(arr2);
+}
+
+console.log(mergeArray<number | string>([1, 2, 3], ["AA1", "BB2"]));
+
+//Parametro Defalt
+
+function somaDefault(n: number, m = 10) {
+  return n + m;
+}
+
+console.log(somaDefault(10));
+console.log(somaDefault(14, 15));
+
+//function Unknows
+
+function doSomething(x: unknown) {
+  if (Array.isArray(x)) {
+    console.log(x[0]);
+  } else if (typeof x === "number") {
+    console.log("X é um numero");
   }
 }
 
-const a = "10";
-const b = "5";
+doSomething([1, 2, 3]);
+doSomething(5);
 
-soma(a, b);
+//never
 
-//Checking Value exists
-function operations(
-  arr: number[],
-  operation: "sum" | "average" | "max" = "sum"
-): number {
-  switch (operation) {
-    case "sum":
-      return arr.reduce((acc, curr) => acc + curr, 0);
-    case "average":
-      const sum = arr.reduce((acc, curr) => acc + curr, 0);
-      return sum / arr.length;
-    case "max":
-      return Math.max(...arr);
-    default:
-      throw new Error("Operação não reconhecida");
-  }
+function showErrors(msg: string): never {
+  throw new Error(msg);
+}
+//showErrors("Any Error");
+
+//  Rest operator
+
+function sumAll(...n: number[]) {
+  return n.reduce((number, sum) => sum + number);
 }
 
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(sumAll(1, 2, 3, 4, 5));
+console.log(sumAll(12, 22, 23, 24, 25));
 
-const sumResult = operations(numbers, "sum");
-console.log("Soma:", sumResult);
+//Destructuring
 
-const averageResult = operations(numbers, "average");
-console.log("Média:", averageResult);
-
-const maxResult = operations(numbers, "max");
-console.log("Máximo:", maxResult);
-
-//Operator InstanceOf
-
-class User {
-  name;
-
-  constructor(name: string) {
-    this.name = name;
-  }
+function showProductDetail({
+  name,
+  price,
+}: {
+  name: string;
+  price: number;
+}): string {
+  return `O produto é ${name} e ele custa ${price}`;
 }
 
-class SuperUser extends User {
-  constructor(name: string) {
-    super(name); //Informa que é do Pai dela neste caso o User
-  }
-}
+const shirt = { name: "Camisa Lacoste", price: 249.9 };
 
-const jhon = new User("john");
-const Paul = new SuperUser("Paul");
-
-console.log(jhon);
-console.log(Paul);
-
-function userGreeting(user: object) {
-  if (user instanceof SuperUser) {
-    console.log(`Olá ${user.name} deseja ter acesso total?`);
-  } else if (user instanceof User) {
-    console.log(
-      `Olá ${user.name} Você pode somente visualizar algumas informações`
-    );
-  }
-}
-
-userGreeting(jhon)
-userGreeting(Paul)
-
-
-// Operador in
-
-
-
+console.log(showProductDetail(shirt));

@@ -1,83 +1,84 @@
 "use strict";
-// 1 - typeguard
-function soma(a, b) {
-    if (typeof a === "string" && typeof b === "string") {
-        console.log(parseFloat(a) + parseFloat(b));
-    }
-    else if (typeof a === "number" && typeof b === "number") {
-        console.log(a + b);
+//funcão sem retorno.
+function withouReturn() {
+    console.log("esta funcao não tem return");
+}
+withouReturn();
+//Callback
+function greeting(name) {
+    return `olá ${name}`;
+}
+function preGreeting(f, userName) {
+    console.log("preparando a função com Callback");
+    const greet = f(userName);
+    console.log(greet);
+}
+preGreeting(greeting, "Matheus");
+preGreeting(greeting, "joao");
+//Generic funcion
+function firstElement(arr) {
+    return arr[0];
+}
+console.log(firstElement([1, 2, 3]));
+console.log(firstElement(["a", "b", "c"]));
+//merge Objects
+function mergeObjects(obj1, obj2) {
+    return {
+        ...obj1,
+        ...obj2,
+    };
+}
+const newObject = mergeObjects({ name: "matheus" }, { age: 30, job: "programer" });
+console.log(newObject);
+//Constraints nas Generic Functions
+function biggestNumber(a, b) {
+    let biggest;
+    if (+a > +b) {
+        biggest = a;
     }
     else {
-        console.log("Pelo menos um dos valores não é um número válido.");
+        biggest = b;
+    }
+    return biggest;
+}
+console.log(biggestNumber(5, 8));
+console.log(biggestNumber("12", "8"));
+// especificar tipo de argumento
+function mergeArray(arr1, arr2) {
+    return arr1.concat(arr2);
+}
+console.log(mergeArray([1, 2, 3], ["AA1", "BB2"]));
+//Parametro Defalt
+function somaDefault(n, m = 10) {
+    return n + m;
+}
+console.log(somaDefault(10));
+console.log(somaDefault(14, 15));
+//function Unknows
+function doSomething(x) {
+    if (Array.isArray(x)) {
+        console.log(x[0]);
+    }
+    else if (typeof x === "number") {
+        console.log("X é um numero");
     }
 }
-const a = "10";
-const b = "5";
-soma(a, b);
-//Checking Value exists
-function operations(arr, operation = "sum") {
-    switch (operation) {
-        case "sum":
-            return arr.reduce((acc, curr) => acc + curr, 0); // Begin End => Begin operator ex: +*/ end
-        case "average":
-            const sum = arr.reduce((acc, curr) => acc + curr, 0);
-            return sum / arr.length;
-        case "max":
-            return Math.max(...arr);
-        default:
-            throw new Error("Operação não reconhecida");
-    }
+doSomething([1, 2, 3]);
+doSomething(5);
+//never
+function showErrors(msg) {
+    throw new Error(msg);
 }
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const sumResult = operations(numbers, "sum");
-console.log("Soma:", sumResult);
-const averageResult = operations(numbers, "average");
-console.log("Média:", averageResult);
-const maxResult = operations(numbers, "max");
-console.log("Máximo:", maxResult);
-//Operator InstanceOf
-class User {
-    constructor(name) {
-        this.name = name;
-    }
+//showErrors("Any Error");
+//  Rest operator
+function sumAll(...n) {
+    return n.reduce((number, sum) => sum + number);
 }
-class SuperUser extends User {
-    constructor(name) {
-        super(name); //Informa que é do Pai dela neste caso o User
-    }
+console.log(sumAll(1, 2, 3, 4, 5));
+console.log(sumAll(12, 22, 23, 24, 25));
+//Destructuring
+function showProductDetail({ name, price }) {
+    return `O produto é ${name} e ele custa ${price}`;
 }
-const jhon = new User("john");
-const Paul = new SuperUser("Paul");
-console.log(jhon);
-console.log(Paul);
-function userGreeting(user) {
-    if (user instanceof SuperUser) {
-        console.log(`Olá ${user.name} deseja ter acesso total?`);
-    }
-    else if (user instanceof User) {
-        console.log(`Olá ${user.name} Você pode somente visualizar algumas informações`);
-    }
-}
-userGreeting(jhon);
-userGreeting(Paul);
-//operator in
-class Dog {
-    constructor(name, breed) {
-        this.name = name;
-        if (breed) {
-            this.breed = breed;
-        }
-    }
-}
-const turca = new Dog("turca");
-const bob = new Dog("Bob", "Pastor Alemao");
-function showGodDetails(dog) {
-    if ('breed' in dog) {
-        console.log(`O Dog é raça ${dog.breed}`);
-    }
-    else {
-        console.log(`O Dog é raça SRD`);
-    }
-}
-showGodDetails(turca);
-showGodDetails(bob);
+const shirt = { name: "Camisa Lacoste", price: 249.90 };
+console.log(showProductDetail(shirt));
