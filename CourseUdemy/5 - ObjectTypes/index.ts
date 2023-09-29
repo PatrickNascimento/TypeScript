@@ -122,6 +122,32 @@ myArray = myArray.map((item)=> { // MAP adiciona enquanto percorre o array
 
 console.log(myArray);
 
+//7  Tuplas
+
+type fiveNumbers = [number,number,number,number,number]
+type nameAnge = [number,string]
+
+const myNumberArray: fiveNumbers = [1,2,3,4,5]
+
+console.log(myNumberArray);
+
+const nameAge: nameAnge = [41,"Patrick"]
+
+console.log(nameAge);
+
+
+//tuplas com readonly
+
+function showNumbers(numbers:readonly [number,number]) {
+console.log(numbers)
+}
+
+showNumbers([1,2])
+
+
+
+
+
 
 
 

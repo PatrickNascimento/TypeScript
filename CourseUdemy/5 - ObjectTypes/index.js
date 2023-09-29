@@ -57,3 +57,12 @@ myArray = myArray.map((item) => {
     return `fruta: ${item}`;
 });
 console.log(myArray);
+const myNumberArray = [1, 2, 3, 4, 5];
+console.log(myNumberArray);
+const nameAge = [41, "Patrick"];
+console.log(nameAge);
+//tuplas com readonly
+function showNumbers(numbers) {
+    console.log(numbers);
+}
+showNumbers([1, 2]);
