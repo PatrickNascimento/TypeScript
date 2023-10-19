@@ -90,3 +90,6 @@ showkm(newtruck.km)
 
 
 
+
+
+
